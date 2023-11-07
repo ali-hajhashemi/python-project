@@ -66,4 +66,5 @@ while True:
             else:
                 print("All Right")
     elif order == "O":
-        print(sorted(dictionary.items()))
+        for words in dictionary.items():
+            print(sorted(words))
