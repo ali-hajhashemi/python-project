@@ -11,18 +11,18 @@ with open("values.txt", encoding="utf-8") as f:
 for index in range(len(values)):
     dictionary[keys[index].rstrip()] = values[index].rstrip()
 
-with open("addkeys.txt", "r") as f:
-    added_keys = f.readlines()
-
-with open("addvalues.txt", "r", encoding="utf-8") as f:
-    added_values = f.readlines()
-
-for index in range(len(added_values)):
-    dictionary[added_keys[index].rstrip()] = added_values[index].rstrip()
-
 print("Welcome To Haji Dictionary")
 while True:
     order = input("\nHow Can I Help You Sir? (? - For Help)")
+
+    with open("addkeys.txt", "r") as f:
+        added_keys = f.readlines()
+
+    with open("addvalues.txt", "r", encoding="utf-8") as f:
+        added_values = f.readlines()
+
+    for index in range(len(added_values)):
+        dictionary[added_keys[index].rstrip()] = added_values[index].rstrip()
 
     if order == "?":
         print(
@@ -53,7 +53,7 @@ while True:
         print(f"{remove_verb}Successfully removed of your dictionary")
 
     elif order == "S":
-        search_verb = input("What are you looking for?")
+        search_verb = input("What are you looking for? ")
         if search_verb in dictionary:
             print(dictionary[search_verb])
         else:
