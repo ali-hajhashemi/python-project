@@ -11,6 +11,15 @@ with open("values.txt", encoding="utf-8") as f:
 for index in range(len(values)):
     dictionary[keys[index].rstrip()] = values[index].rstrip()
 
+with open("addkeys.txt", "r") as f:
+    added_keys = f.readlines()
+
+with open("addvalues.txt", "r", encoding="utf-8") as f:
+    added_values = f.readlines()
+
+for index in range(len(added_values)):
+    dictionary[added_keys[index].rstrip()] = added_values[index].rstrip()
+
 print("Welcome To Haji Dictionary")
 while True:
     order = input("\nHow Can I Help You Sir? (? - For Help)")
@@ -26,14 +35,14 @@ while True:
         # Add Verb To TXT File
         with open("addkeys.txt", "a") as f:
             f.write(added_verb)
+            f.write("\n")
 
         added_verb_meaning = input("Pleas Enter Your Meaning Of Verb: ")
         # Add Meaning To TXT File
-        with open("addvalues.txt", "a") as f:
+        with open("addvalues.txt", "a", encoding="utf-8") as f:
             f.write(added_verb_meaning)
+            f.write("\n")
 
-        # Add Verb & Meaning To Dictionary
-        dictionary[added_verb] = added_verb_meaning
         print(f"{added_verb} Successfully add to your dictionary")
 
     elif order == "R":
@@ -57,10 +66,9 @@ while True:
                 with open("addkeys.txt", "a") as f:
                     f.write(search_verb)
                 # Add Meaning To TXT File
-                with open("addvalues.txt", "a") as f:
+                with open("addvalues.txt", "a", encoding="utf-8") as f:
                     f.write(search_add_meaning)
 
-                dictionary[search_verb] = search_add_meaning
                 print(f"{search_verb} Successfully added to dictionary")
             # If Answer = n
             else:
