@@ -11,18 +11,18 @@ with open("values.txt", encoding="utf-8") as f:
 for index in range(len(values)):
     dictionary[keys[index].rstrip()] = values[index].rstrip()
 
+with open("addkeys.txt", "r") as f:
+    added_keys = f.readlines()
+
+with open("addvalues.txt", "r", encoding="utf-8") as f:
+    added_values = f.readlines()
+
+for index in range(len(added_values)):
+    dictionary[added_keys[index].rstrip()] = added_values[index].rstrip()
+
 print("Welcome To Haji Dictionary")
 while True:
     order = input("\nHow Can I Help You Sir? (? - For Help)")
-
-    with open("addkeys.txt", "r") as f:
-        added_keys = f.readlines()
-
-    with open("addvalues.txt", "r", encoding="utf-8") as f:
-        added_values = f.readlines()
-
-    for index in range(len(added_values)):
-        dictionary[added_keys[index].rstrip()] = added_values[index].rstrip()
 
     if order == "?":
         print(
@@ -47,10 +47,13 @@ while True:
 
     elif order == "R":
         remove_verb = input("Please Enter Your Verb Want To Remove: ")
+        if remove_verb in dictionary:
+            # Remove Verb Of Dictionary
+            del dictionary[remove_verb]
 
-        # Remove Verb Of Dictionary
-        del dictionary[remove_verb]
-        print(f"{remove_verb}Successfully removed of your dictionary")
+            print(f"{remove_verb}Successfully removed of your dictionary")
+        else:
+            print("Your Verb Not Founded")
 
     elif order == "S":
         search_verb = input("What are you looking for? ")
@@ -74,5 +77,20 @@ while True:
             else:
                 print("All Right")
     elif order == "O":
-        for words in dictionary.items():
-            print(sorted(words))
+        for words, mean_words in dictionary.items():
+            print(f"{words} : {mean_words}")
+
+    with open("addkeys.txt", "w") as f:
+        f.write("")
+
+    with open("addvalues.txt", "w", encoding="utf-8") as f:
+        f.write("")
+
+    for new_keys, new_values in dictionary.items():
+        with open("addkeys.txt", "a") as f:
+            f.write(new_keys)
+            f.write("\n")
+
+        with open("addvalues.txt", "a", encoding="utf-8") as f:
+            f.write(new_values)
+            f.write("\n")
