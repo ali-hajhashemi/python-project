@@ -28,7 +28,7 @@ while True:
         print(
             "A - For Add Verb",
             "\nR - For Remove Verb",
-            "\nS - For Search Verb\nO - For Show Dictionary",
+            "\nS - For Search Verb\nO - For Show Dictionary\nQ - For Exit",
         )
     elif order == "A":
         added_verb = input("Please Enter Your Verb Want To Add: ")
@@ -79,6 +79,9 @@ while True:
     elif order == "O":
         for words, mean_words in dictionary.items():
             print(f"{words} : {mean_words}")
+    elif order == "Q":
+        print("Bay Bay Sir :)")
+        exit()
 
     with open("addkeys.txt", "w") as f:
         f.write("")
