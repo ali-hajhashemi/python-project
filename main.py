@@ -24,13 +24,14 @@ print("Welcome To Haji Dictionary")
 while True:
     order = input("\nHow Can I Help You Sir? (? - For Help)")
 
-    if order == "?":
+    def help():
         print(
             "A - For Add Verb",
             "\nR - For Remove Verb",
             "\nS - For Search Verb\nO - For Show Dictionary\nQ - For Exit",
         )
-    elif order == "A":
+
+    def add_word():
         added_verb = input("Please Enter Your Verb Want To Add: ")
         # Add Verb To TXT File
         with open("addkeys.txt", "a") as f:
@@ -43,9 +44,11 @@ while True:
             f.write(added_verb_meaning)
             f.write("\n")
 
+        dictionary[added_verb] = added_verb_meaning
+
         print(f"{added_verb} Successfully add to your dictionary")
 
-    elif order == "R":
+    def remove():
         remove_verb = input("Please Enter Your Verb Want To Remove: ")
         if remove_verb in dictionary:
             # Remove Verb Of Dictionary
@@ -55,7 +58,7 @@ while True:
         else:
             print("Your Verb Not Founded")
 
-    elif order == "S":
+    def search():
         search_verb = input("What are you looking for? ")
         if search_verb in dictionary:
             print(dictionary[search_verb])
@@ -76,9 +79,26 @@ while True:
             # If Answer = n
             else:
                 print("All Right")
-    elif order == "O":
+
+    def show_dictionary():
         for words, mean_words in dictionary.items():
             print(f"{words} : {mean_words}")
+
+    if order == "?":
+        help()
+
+    elif order == "A":
+        add_word()
+
+    elif order == "R":
+        remove()
+
+    elif order == "S":
+        search()
+
+    elif order == "O":
+        show_dictionary()
+
     elif order == "Q":
         print("Bay Bay Sir :)")
         exit()
